@@ -1,0 +1,49 @@
+8
+
+dir
+33
+file:///usr/class/ee271/svn/hw/hw3/hw3-1
+file:///usr/class/ee271/svn
+
+
+
+2009-09-23T19:55:55.788118Z
+14
+shacham
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+f7c347aa-f38a-4f19-b5c2-2c432b8d3e1b
+
+synth
+dir
+
+src
+dir
+
+verif
+dir
+
+Makefile
+file
+
+
+
+
+2009-09-18T22:17:00.000000Z
+25e0eb234b6774687ec86fb9c334ef72
+2009-09-03T18:58:49.991717Z
+1
+shacham
+

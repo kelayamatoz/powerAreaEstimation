@@ -1,0 +1,165 @@
+# Simple syhthesis script to use TSMC libraries
+#
+# Runs a top-down (entire chip in one compile) compile
+# This is NOT suitable for big chips.
+
+# ToDo:  
+#        Get variables set to input ports, clock, output ports
+#        rather than using get_ports all the time
+
+
+#
+# set Libraries, work location, path - .synopsys_dc stuff really.
+###################################################################
+define_design_lib work -path ./work
+
+
+#####################
+# Old lib setup
+#####################
+#set link_library {* tcb013ghpwc.db dw01.sldb dw02.sldb dw_foundation.sldb}
+#set target_library {tcb013ghpwc.db}
+#set symbol_library {tcb013ghp.sdb}
+#set synthetic_library [list dw01.sldb dw02.sldb dw_foundation.sldb]
+
+#set dw_lib     /usr/class/ee/synopsys/W-2004.12-SP5/syn/libraries/syn/
+#set sym_lib    /usr/class/ee/synopsys/library/TSMCHOME/digital/Front_End/timing_power/tcb013ghp_211a
+#set target_lib    /usr/class/ee/synopsys/library/TSMCHOME/digital/Front_End/timing_power/tcb013ghp_211a
+
+#####################
+# Path Variables
+#####################
+set SYN  /usr/class/ee/synopsys/data1/syn/2010.03/libraries/syn/
+set TSMC_45 /usr/class/ee271/project/lib/TSMC_45nm/
+
+
+#####################
+# Set Design Library
+#####################
+
+#TSMC 45nm Library
+set link_library { * tcbn45gsbwpml.db dw_foundation.sldb}
+set target_library "tcbn45gsbwpml.db"
+
+set synthetic_library [list  dw_foundation.sldb]
+set dw_lib     $SYN
+set sym_lib    $TSMC_45
+set target_lib $TSMC_45
+
+
+set search_path [list ./ ../src/ $dw_lib $target_lib $sym_lib]
+
+
+#
+set hdlin_auto_save_templates true
+# read in verilog
+read_verilog -rtl [list behavioral_AND8.v]
+
+
+# set top level design
+current_design behavioral_AND8
+
+# link it to resolve references
+link
+
+# Build separate instance for multiply-instantiated sub-modules
+uniquify
+
+#
+# Set technology constraints
+###################################
+
+#set_operating_conditions WCCOM
+set_dont_use tcbn45gsbwpml/*D0BWP
+
+# Wireload
+#set_wire_load_selection_group "WireAreaFsgCon"
+set_wire_load_mode top
+
+#
+# set what is driving the inputs
+####################################
+# option 1: driven by a standard flo (or a scanchain flop in this example):
+set_driving_cell -library tcbn45gsbwpml -lib_cell INVD0BWP -pin ZN [ get_ports "*" -filter {@port_direction == in} ]
+
+# option 2: or set input pin capacitance
+#(cap is in same units as the library: use 'list_libs' and 'report_lib <libname>' to find units)
+#set_load 0.00250 {In[0] In[1] In[2] In[3] In[4] In[5] In[6] In[7]}
+
+#set output pin capacitance
+# option 1: assume that you are driving a simple flop:
+set_load [expr 400 * [load_of tcbn45gsbwpml/INVD0BWP/I]] [get_ports "*" -filter {@port_direction == out} ]
+
+# option2: manualy set the load 
+#set_load 0.0025 {Out}
+
+# Instead-of, or in-addition-to setting the load, we can set the fanout
+#set_fanout_load 4 [get_ports "*" -filter {@port_direction == out} ]
+
+
+#
+# Timing / Area constraints
+###############################
+# Since this is a combinational circuit with no clock, we'll just require 
+# delay for input to output rather than clock period
+set_max_delay -from [all_inputs] -to [all_outputs] 0.20
+
+# We also don't want any indevidual net to take too long.
+set_max_transition 0.1 [all_outputs]
+
+# The clock line is unnecessary in this project... :)
+#create_clock -period 30 [get_ports clk]
+
+#set_clock_uncertainty -setup 0 [get_clocks clk]
+#set_clock_uncertainty -hold 0 [get_clocks clk]
+
+# set INTERNAL clock tree latency (modeling the clock tree)
+#set_clock_latency 0 [get_clocks clk]
+
+# Dont use set_propagated_clock until we have post-route data
+
+# set input and output delays
+set input_delay 0
+
+#set_input_delay -max $input_delay -clock clk [get_ports "*" -filter {@port_direction == in} ]
+
+set output_delay 0
+
+#set_output_delay -max $output_delay -clock clk [get_ports "*" -filter {@port_direction == out} ]
+
+#should try to set this to 90% of real area
+set_max_area 80
+
+# See the setup
+report_design
+
+check_design
+
+
+###################################################
+# Compile & Report
+###################################################
+
+current_design behavioral_AND8
+
+set wire_load_mode top
+
+compile_ultra
+
+#
+# Timing
+#
+report_timing -nworst 1
+
+#
+# Save files
+#
+
+write -format verilog -hier -o AND8.psv
+# Normally write a db but skip it for 271
+#write -format db -hier -o AND8.db
+
+
+# save scripts
+write_script -hier -format dctcl -o AND8.wscr 
+

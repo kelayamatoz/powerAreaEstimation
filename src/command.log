@@ -1,7 +1,7 @@
 #@ # 
 #@ # Running dc_shell Version G-2012.06-SP5-1 for amd64 -- Mar 18, 2013
-#@ # Date:   Thu Jun 30 12:47:18 2016
-#@ # Run by: tianzhao@corn21.stanford.edu
+#@ # Date:   Thu Jun 30 12:57:58 2016
+#@ # Run by: tianzhao@corn04.stanford.edu
 #@ 
 
 source /usr/class/ee/synopsys/dc_shell/G-2012.06-SP5-1/admin/setup/.synopsys_dc.setup
@@ -4781,8 +4781,8 @@ source /usr/class/ee/synopsys/dc_shell/G-2012.06-SP5-1/admin/setup/.synopsys_dc.
 #@ 
 #@ # -- End source /usr/class/ee/synopsys/dc_shell/G-2012.06-SP5-1/admin/setup/.synopsys_dc.setup
 
-source -echo -verbose /afs/ir.stanford.edu/users/t/i/tianzhao/research/andPowerArea/src/../synth/AND8.tcl
-#@ # -- Starting source /afs/ir.stanford.edu/users/t/i/tianzhao/research/andPowerArea/src/../synth/AND8.tcl
+source -echo -verbose /afs/ir.stanford.edu/users/t/i/tianzhao/research/aluPowerArea/src/../synth/AND8.tcl
+#@ # -- Starting source /afs/ir.stanford.edu/users/t/i/tianzhao/research/aluPowerArea/src/../synth/AND8.tcl
 
 #@ # Simple syhthesis script to use TSMC libraries
 #@ #
@@ -4953,9 +4953,8 @@ source -echo -verbose /afs/ir.stanford.edu/users/t/i/tianzhao/research/andPowerA
 #@ # save scripts
 #@ write_script -hier -format dctcl -o AND8.wscr 
 #@ 
-#@ # -- End source /afs/ir.stanford.edu/users/t/i/tianzhao/research/andPowerArea/src/../synth/AND8.tcl
+#@ # -- End source /afs/ir.stanford.edu/users/t/i/tianzhao/research/aluPowerArea/src/../synth/AND8.tcl
 
-report area
 report_area
 report_power
 quit

@@ -1,0 +1,666 @@
+
+                      Design Compiler Graphical
+                            DC Ultra (TM)
+                             DFTMAX (TM)
+                         Power Compiler (TM)
+                           DesignWare (R)
+                           DC Expert (TM)
+                         Design Vision (TM)
+                          HDL Compiler (TM)
+                         VHDL Compiler (TM)
+                            DFT Compiler
+                        Library Compiler (TM)
+                         Design Compiler(R)
+
+          Version I-2013.12-SP4 for RHEL64 -- Jun 04, 2014
+               Copyright (c) 1988-2014 Synopsys, Inc.
+
+This software and the associated documentation are confidential and 
+proprietary to Synopsys, Inc. Your use or disclosure of this software 
+is subject to the terms and conditions of a written license agreement 
+between you, or your company, and Synopsys, Inc.
+
+Initializing...
+# Simple syhthesis script to use TSMC libraries
+#
+# Runs a top-down (entire chip in one compile) compile
+# This is NOT suitable for big chips.
+#
+# set Libraries, work location, path - .synopsys_dc stuff really.
+###################################################################
+define_design_lib work -path ./work
+1
+file mkdir reports
+file mkdir netlist
+remove_design -all
+1
+#####################
+# Path Variables
+#####################
+set SYN /cad/synopsys/dc_shell/latest/libraries/syn/
+/cad/synopsys/dc_shell/latest/libraries/syn/
+set TSMC_45 /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+# Create milkyway database
+create_mw_lib -technology /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/techfiles/HVH_0d5_0/tsmcn45_10lm7X2ZRDL.tf -mw_reference_library /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/frame_only_HVH_0d5_0/tcbn45gsbwp "alu_rtl_LIB"
+Start to load technology file /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/techfiles/HVH_0d5_0/tsmcn45_10lm7X2ZRDL.tf.
+Warning: Layer 'AP' is missing the attribute 'minArea'. (line 839) (TFCHK-012)
+Warning: Cut layer 'VIA1' has a non-cross primary default ContactCode 'VIA12'. (line 1346) (TFCHK-092)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2089) (TFCHK-012)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2097) (TFCHK-012)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2105) (TFCHK-012)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2113) (TFCHK-012)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2121) (TFCHK-012)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2129) (TFCHK-012)
+Warning: DesignRule is missing the attribute 'endOfLineEncWidthThreshold'. (line 2137) (TFCHK-012)
+Warning: Layer 'M1' has a pitch 0.14 that does not match the recommended wire-to-via pitch 0.17. (TFCHK-049)
+Warning: Layer 'M8' has a pitch 0.14 that does not match the recommended wire-to-via pitch 0.305 or 0.365. (TFCHK-049)
+Warning: Layer 'M10' has a pitch 0.8 that does not match the recommended wire-to-via pitch 2.6. (TFCHK-049)
+Warning: Layer 'AP' has a pitch 5.2 that does not match the recommended wire-to-via pitch 5. (TFCHK-049)
+Warning: Layer 'M3' has a pitch 0.14 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M4' has a pitch 0.14 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M5' has a pitch 0.14 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M6' has a pitch 0.14 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M7' has a pitch 0.14 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M8' has a pitch 0.14 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M9' has a pitch 0.8 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'M10' has a pitch 0.8 that does not match the doubled pitch 0.28 or tripled pitch 0.42. (TFCHK-050)
+Warning: Layer 'AP' has a pitch 5.2 that does not match the doubled pitch 1.6 or tripled pitch 2.4. (TFCHK-050)
+Warning: CapModel sections are missing. Capacitance models should be loaded with a TLU+ file later. (TFCHK-084)
+Technology file /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/techfiles/HVH_0d5_0/tsmcn45_10lm7X2ZRDL.tf has been loaded successfully.
+open_mw_lib "alu_rtl_LIB"
+{alu_rtl_LIB}
+####################
+# Set Design Library
+#####################
+#TSMC 45nm Library
+set link_library { * tcbn45gsbwpml.db dw_foundation.sldb}
+ * tcbn45gsbwpml.db dw_foundation.sldb
+set target_library "tcbn45gsbwpml.db"
+tcbn45gsbwpml.db
+set synthetic_library [list  dw_foundation.sldb]
+dw_foundation.sldb
+set dw_lib     $SYN
+/cad/synopsys/dc_shell/latest/libraries/syn/
+set sym_lib    $TSMC_45
+/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+set target_lib $TSMC_45
+/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+set search_path [list ./ ../src/ $dw_lib $target_lib $sym_lib]
+./ ../src/ /cad/synopsys/dc_shell/latest/libraries/syn/ /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/ /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+#
+set hdlin_auto_save_templates true
+true
+# read in verilog
+read_verilog -rtl [list behavioral_AND8.v]
+Loading db file '/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db'
+Loading db file '/cad/synopsys/dc_shell/latest/libraries/syn/dw_foundation.sldb'
+Loading db file '/cad/synopsys/dc_shell/latest/libraries/syn/gtech.db'
+Loading db file '/cad/synopsys/dc_shell/latest/libraries/syn/standard.sldb'
+  Loading link library 'tcbn45gsbwpml'
+  Loading link library 'gtech'
+Loading verilog file '/local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/src/behavioral_AND8.v'
+Running PRESTO HDLC
+Compiling source file /local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/src/behavioral_AND8.v
+Warning:  /local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/src/behavioral_AND8.v:42: The construct 'declaration initial assignment' is not supported in synthesis; it is ignored. (VER-708)
+Presto compilation completed successfully.
+Current design is now '/local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/src/behavioral_AND8.db:behavioral_AND8'
+Loaded 1 design.
+Current design is 'behavioral_AND8'.
+behavioral_AND8
+# set top level design
+current_design behavioral_AND8
+Current design is 'behavioral_AND8'.
+{behavioral_AND8}
+# link it to resolve references
+link
+
+  Linking design 'behavioral_AND8'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  behavioral_AND8             /local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/src/behavioral_AND8.db
+  tcbn45gsbwpml (library)     /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db
+  dw_foundation.sldb (library) /cad/synopsys/dc_shell/latest/libraries/syn/dw_foundation.sldb
+
+1
+# Build separate instance for multiply-instantiated sub-modules
+uniquify
+1
+#
+# Set technology constraints
+###################################
+#set_operating_conditions WCCOM
+set_dont_use tcbn45gsbwpml/*D0BWP
+1
+# Wireload
+#set_wire_load_selection_group "WireAreaFsgCon"
+set_wire_load_mode top
+1
+#
+# set what is driving the inputs
+####################################
+# option 1: driven by a standard flo (or a scanchain flop in this example):
+set_driving_cell -library tcbn45gsbwpml -lib_cell INVD0BWP -pin ZN [ get_ports "*" -filter {@port_direction == in} ]
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+Warning: Design rule attributes from the driving cell will be
+	set on the port. (UID-401)
+1
+# option 2: or set input pin capacitance
+#(cap is in same units as the library: use 'list_libs' and 'report_lib <libname>' to find units)
+#set_load 0.00250 {In[0] In[1] In[2] In[3] In[4] In[5] In[6] In[7]}
+#set output pin capacitance
+# option 1: assume that you are driving a simple flop:
+set_load [expr 400 * [load_of tcbn45gsbwpml/INVD0BWP/I]] [get_ports "*" -filter {@port_direction == out} ]
+1
+# option2: manualy set the load 
+#set_load 0.0025 {Out}
+# Instead-of, or in-addition-to setting the load, we can set the fanout
+#set_fanout_load 4 [get_ports "*" -filter {@port_direction == out} ]
+#
+# Timing / Area constraints
+###############################
+# Since this is a combinational circuit with no clock, we'll just require 
+# delay for input to output rather than clock period
+set_max_delay -from [all_inputs] -to [all_outputs] 0.20
+1
+# We also don't want any indevidual net to take too long.
+set_max_transition 0.1 [all_outputs]
+1
+# The clock line is unnecessary in this project... :)
+#create_clock -period 30 [get_ports clk]
+#set_clock_uncertainty -setup 0 [get_clocks clk]
+#set_clock_uncertainty -hold 0 [get_clocks clk]
+# set INTERNAL clock tree latency (modeling the clock tree)
+#set_clock_latency 0 [get_clocks clk]
+# Dont use set_propagated_clock until we have post-route data
+# set input and output delays
+set input_delay 0
+0
+#set_input_delay -max $input_delay -clock clk [get_ports "*" -filter {@port_direction == in} ]
+set output_delay 0
+0
+#set_output_delay -max $output_delay -clock clk [get_ports "*" -filter {@port_direction == out} ]
+#should try to set this to 90% of real area
+set_max_area 80
+1
+# See the setup
+report_design
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : design
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Tue Jul 12 17:03:48 2016
+****************************************
+
+Design allows ideal nets on clock nets.
+
+Library(s) Used:
+
+    gtech (File: /cad/synopsys/dc_shell/latest/libraries/syn/gtech.db)
+
+Flip-Flop Types:
+
+    No flip-flop types specified.
+
+Latch Types:
+
+    No latch types specified.
+
+Operating Conditions:
+
+
+    Operating Condition Name : MLCOM
+    Library : tcbn45gsbwpml
+    Process :   1.00
+    Temperature : 125.00
+    Voltage :   0.99
+    Interconnect Model : balanced_tree
+
+Wire Loading Model:
+
+    Selected from the default (area not fully known).
+
+Name           :   ZeroWireload
+Location       :   tcbn45gsbwpml
+Resistance     :   1e-05
+Capacitance    :   1
+Area           :   0
+Slope          :   0
+Fanout   Length   Points Average Cap Std Deviation
+--------------------------------------------------------------
+     1     0.00
+     2     0.00
+     3     0.00
+     4     0.00
+     5     0.00
+     6     0.00
+     7     0.00
+     8     0.00
+     9     0.00
+    10     0.00
+    11     0.00
+    12     0.00
+    13     0.00
+    14     0.00
+    15     0.00
+    16     0.00
+    17     0.00
+    18     0.00
+    19     0.00
+    20     0.00
+
+
+
+Wire Loading Model Mode: top.
+
+Timing Ranges:
+
+    No timing ranges specified.
+
+Pin Input Delays:
+
+    None specified.
+
+Pin Output Delays:
+
+    None specified.
+
+Disabled Timing Arcs:
+
+    No arcs disabled.
+
+Required Licenses:
+
+    None Required
+
+Design Parameters:
+
+    None specified.
+
+Information: This design contains unmapped logic. (RPT-7)
+1
+check_design
+1
+###################################################
+# Compile & Report
+###################################################
+current_design behavioral_AND8
+Current design is 'behavioral_AND8'.
+{behavioral_AND8}
+set wire_load_mode top
+top
+# enable power calculation
+saif_map -start
+Information: The SAIF name mapping information database is now active. (PWR-602)
+1
+set_power_prediction
+Error: unknown command 'set_power_prediction' (CMD-005)
+compile_ultra
+Analyzing: "/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db"
+Library analysis succeeded.
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | I-2013.12-DWBB_201312.4 |     *     |
+| Licensed DW Building Blocks        | I-2013.12-DWBB_201312.4 |     *     |
+============================================================================
+
+Information: Sequential output inversion is enabled.  SVF file must be used for formal verification. (OPT-1208)
+
+Warning: Setting dont_use on dont_touched lib_cell 'tcbn45gsbwpml'/'TIEHBWP'. (OPT-1307)
+Warning: Setting dont_use on dont_touched lib_cell 'tcbn45gsbwpml'/'TIELBWP'. (OPT-1307)
+  Loading target library 'tcbn45gsbwpml'
+Loaded alib file './alib-52/tcbn45gsbwpml.db.alib'
+Information: Ungrouping 0 of 1 hierarchies before Pass 1 (OPT-775)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'behavioral_AND8'
+Information: Added key list 'DesignWare' to design 'behavioral_AND8'. (DDB-72)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (Ultra High effort)
+  -------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:03      79.9      0.00       0.0       0.0                          
+    0:00:04      79.9      0.00       0.0       0.0                          
+    0:00:04      79.9      0.00       0.0       0.0                          
+    0:00:04      79.9      0.00       0.0       0.0                          
+  Re-synthesis Optimization (Phase 1)
+  Re-synthesis Optimization (Phase 2)
+  Global Optimization (Phase 1)
+  Global Optimization (Phase 2)
+  Global Optimization (Phase 3)
+  Global Optimization (Phase 4)
+  Global Optimization (Phase 5)
+  Global Optimization (Phase 6)
+  Global Optimization (Phase 7)
+  Global Optimization (Phase 8)
+  Global Optimization (Phase 9)
+  Global Optimization (Phase 10)
+  Global Optimization (Phase 11)
+  Global Optimization (Phase 12)
+  Global Optimization (Phase 13)
+  Global Optimization (Phase 14)
+  Global Optimization (Phase 15)
+  Global Optimization (Phase 16)
+  Global Optimization (Phase 17)
+  Global Optimization (Phase 18)
+  Global Optimization (Phase 19)
+  Global Optimization (Phase 20)
+  Global Optimization (Phase 21)
+  Global Optimization (Phase 22)
+  Global Optimization (Phase 23)
+  Global Optimization (Phase 24)
+  Global Optimization (Phase 25)
+  Global Optimization (Phase 26)
+  Global Optimization (Phase 27)
+  Global Optimization (Phase 28)
+  Global Optimization (Phase 29)
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:04      75.1      0.01       0.0       0.0                          
+    0:00:04      75.1      0.01       0.0       0.0                          
+    0:00:04      83.4      0.00       0.0       0.0                          
+    0:00:04      83.4      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:04      83.8      0.00       0.0       0.0                          
+    0:00:05      78.5      0.00       0.0       0.0                          
+    0:00:05      78.5      0.00       0.0       0.0                          
+    0:00:06      78.5      0.00       0.0       0.0                          
+    0:00:06      78.5      0.00       0.0       0.0                          
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06      78.5      0.00       0.0       0.0                          
+    0:00:06      78.5      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (max_area 0)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:06      78.5      0.00       0.0       0.0                          
+  Global Optimization (Phase 30)
+  Global Optimization (Phase 31)
+  Global Optimization (Phase 32)
+  Global Optimization (Phase 33)
+  Global Optimization (Phase 34)
+  Global Optimization (Phase 35)
+  Global Optimization (Phase 36)
+  Global Optimization (Phase 37)
+  Global Optimization (Phase 38)
+  Global Optimization (Phase 39)
+  Global Optimization (Phase 40)
+  Global Optimization (Phase 41)
+  Global Optimization (Phase 42)
+  Global Optimization (Phase 43)
+  Global Optimization (Phase 44)
+  Global Optimization (Phase 45)
+  Global Optimization (Phase 46)
+  Global Optimization (Phase 47)
+  Global Optimization (Phase 48)
+  Global Optimization (Phase 49)
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+    0:00:06      69.5      0.00       0.0       0.0                          
+Loading db file '/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db'
+
+  Optimization Complete
+  ---------------------
+1
+###################################################
+# Analyze Design
+###################################################
+redirect "reports/design_report" { report_design }
+check_design
+1
+redirect "reports/design_check" {check_design }
+#report_constraint -all_violators
+#redirect "reports/constraint_report" {report_constraint -all_violators}
+report_area
+ 
+****************************************
+Report : area
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Tue Jul 12 17:05:13 2016
+****************************************
+
+Library(s) Used:
+
+    tcbn45gsbwpml (File: /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db)
+
+Number of ports:                           14
+Number of nets:                            65
+Number of cells:                           55
+Number of combinational cells:             55
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         16
+Number of references:                      26
+
+Combinational area:                 69.501601
+Buf/Inv area:                       14.464800
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                    69.501601
+Total area:                 undefined
+1
+redirect "reports/area_report" { report_area }
+#redirect "reports/area_hier_report" { report_area -hier }
+report_power
+Loading db file '/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: There is no defined clock in the design. (PWR-80)
+Warning: Design has unannotated primary inputs. (PWR-414)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Tue Jul 12 17:05:16 2016
+****************************************
+
+
+Library(s) Used:
+
+    tcbn45gsbwpml (File: /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db)
+
+
+Operating Conditions: MLCOM   Library: tcbn45gsbwpml
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+behavioral_AND8        ZeroWireload      tcbn45gsbwpml
+
+
+Global Operating Voltage = 0.99 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  31.3552 uW   (22%)
+  Net Switching Power  = 110.0736 uW   (78%)
+                         ---------
+Total Dynamic Power    = 141.4287 uW  (100%)
+
+Cell Leakage Power     = 128.9781 uW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  3.1355e-02            0.1101        1.2898e+05            0.2704  ( 100.00%)
+--------------------------------------------------------------------------------------------------
+Total          3.1355e-02 mW         0.1101 mW     1.2898e+05 nW         0.2704 mW
+1
+redirect "reports/power_report" { report_power -analysis_effort hi }
+report_timing
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Tue Jul 12 17:05:16 2016
+****************************************
+
+Operating Conditions: MLCOM   Library: tcbn45gsbwpml
+Wire Load Model Mode: top
+
+  Startpoint: io_b[0] (input port)
+  Endpoint: io_out[2] (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  behavioral_AND8    ZeroWireload          tcbn45gsbwpml
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 r
+  io_b[0] (in)                             0.01       0.01 r
+  U50/Z (AN2D1BWP)                         0.03       0.04 r
+  U74/CON (FCICOND1BWP)                    0.03       0.07 f
+  U75/ZN (CKND2BWP)                        0.01       0.08 r
+  U87/ZN (ND2D1BWP)                        0.01       0.09 f
+  U55/ZN (ND3D1BWP)                        0.01       0.10 r
+  U90/ZN (ND2D1BWP)                        0.01       0.11 f
+  U48/ZN (AOI21D1BWP)                      0.02       0.13 r
+  U59/Z (OR2D8BWP)                         0.07       0.20 r
+  io_out[2] (out)                          0.00       0.20 r
+  data arrival time                                   0.20
+
+  max_delay                                0.20       0.20
+  output external delay                    0.00       0.20
+  data required time                                  0.20
+  -----------------------------------------------------------
+  data required time                                  0.20
+  data arrival time                                  -0.20
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1
+redirect "reports/timing_report_maxsm" { report_timing -significant_digits 4 }
+check_error
+0
+redirect "reports/error_checking_report" { check_error }
+redirect "reports"
+Error: Required argument 'command_string' was not found (CMD-007)
+#
+# Save the Design Database
+#
+change_names -rules verilog -hierarchy
+1
+write -format ddc -hierarchy -output netlist/example.mapped.ddc
+Writing ddc file 'netlist/example.mapped.ddc'.
+1
+write -f verilog -hierarchy -output netlist/example.mapped.v
+Writing verilog file '/local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/synth/netlist/example.mapped.v'.
+1
+write_sdf netlist/example.mapped.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/local/ssd/home/tianzhao/plasticine_power_area_estimate/aluPowerArea/synth/netlist/example.mapped.sdf'. (WT-3)
+1
+write_sdc -nosplit netlist/example.mapped.sdc
+1
+# save scripts
+write_script -hier -format dctcl -o AND8.wscr 
+1
+exit
+
+Thank you...

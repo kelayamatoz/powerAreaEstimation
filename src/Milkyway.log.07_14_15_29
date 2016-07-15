@@ -1,0 +1,10 @@
+WARNING : License key 'Milkyway' expires on 06-NOV-2015
+WARNING : License key 'MDataPrep' expires on 06-NOV-2015
+Connection to IPC server failed.
+Starting IPC Server. (Port = 1925)
+IPC Server started successfully.
+ERROR : Tk_Init() failed. Tk Path is TK_LIBRARY=/cad/synopsys/mw/G-2012.06-SP5-4/etc/tcl-w
+Cannot initialize GUI. Likely causes: 
+	(1) The executable is not in the right path;
+	(2) The connection to X-server is broken or refused.
+Exit Milkyway!

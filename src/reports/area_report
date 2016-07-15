@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Thu Jul 14 15:45:37 2016
+****************************************
+
+Library(s) Used:
+
+    tcbn45gsbwpml (File: /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/tcbn45gsbwpml.db)
+
+Number of ports:                           30
+Number of nets:                            90
+Number of cells:                           72
+Number of combinational cells:             72
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         34
+Number of references:                      25
+
+Combinational area:                 87.847202
+Buf/Inv area:                       39.866401
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                    87.847202
+Total area:                 undefined
+1

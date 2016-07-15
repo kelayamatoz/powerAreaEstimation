@@ -1,0 +1,50 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Thu Jul 14 15:45:40 2016
+****************************************
+
+Operating Conditions: MLCOM   Library: tcbn45gsbwpml
+Wire Load Model Mode: top
+
+  Startpoint: io_b[0] (input port)
+  Endpoint: io_out[2] (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  behavioral_AND8    ZeroWireload          tcbn45gsbwpml
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                   0.0000     0.0000 r
+  io_b[0] (in)                           0.0184     0.0184 r
+  U65/ZN (CKND2D1BWP)                    0.0184     0.0368 f
+  U68/ZN (AOI22D1BWP)                    0.0240     0.0608 r
+  U77/ZN (ND2D1BWP)                      0.0123     0.0732 f
+  U78/ZN (ND2D1BWP)                      0.0093     0.0825 r
+  U79/ZN (AOI21D1BWP)                    0.0097     0.0922 f
+  U81/ZN (OAI21D1BWP)                    0.0131     0.1053 r
+  U83/ZN (MAOI22D1BWP)                   0.0129     0.1182 f
+  U84/ZN (AOI32D1BWP)                    0.0313     0.1494 r
+  U85/Z (BUFFD12BWP)                     0.0505     0.2000 r
+  io_out[2] (out)                        0.0000     0.2000 r
+  data arrival time                                 0.2000
+
+  max_delay                              0.2000     0.2000
+  output external delay                  0.0000     0.2000
+  data required time                                0.2000
+  -----------------------------------------------------------
+  data required time                                0.2000
+  data arrival time                                -0.2000
+  -----------------------------------------------------------
+  slack (MET)                                       0.0000
+
+
+1

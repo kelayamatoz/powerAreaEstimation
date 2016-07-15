@@ -1,0 +1,49 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : behavioral_AND8
+Version: I-2013.12-SP4
+Date   : Tue Jul 12 17:05:16 2016
+****************************************
+
+Operating Conditions: MLCOM   Library: tcbn45gsbwpml
+Wire Load Model Mode: top
+
+  Startpoint: io_b[0] (input port)
+  Endpoint: io_out[2] (output port)
+  Path Group: default
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  behavioral_AND8    ZeroWireload          tcbn45gsbwpml
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                   0.0000     0.0000 r
+  io_b[0] (in)                           0.0142     0.0142 r
+  U50/Z (AN2D1BWP)                       0.0255     0.0397 r
+  U74/CON (FCICOND1BWP)                  0.0297     0.0693 f
+  U75/ZN (CKND2BWP)                      0.0103     0.0797 r
+  U87/ZN (ND2D1BWP)                      0.0102     0.0899 f
+  U55/ZN (ND3D1BWP)                      0.0119     0.1018 r
+  U90/ZN (ND2D1BWP)                      0.0099     0.1118 f
+  U48/ZN (AOI21D1BWP)                    0.0160     0.1278 r
+  U59/Z (OR2D8BWP)                       0.0718     0.1996 r
+  io_out[2] (out)                        0.0000     0.1996 r
+  data arrival time                                 0.1996
+
+  max_delay                              0.2000     0.2000
+  output external delay                  0.0000     0.2000
+  data required time                                0.2000
+  -----------------------------------------------------------
+  data required time                                0.2000
+  data arrival time                                -0.1996
+  -----------------------------------------------------------
+  slack (MET)                                       0.0004
+
+
+1

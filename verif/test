@@ -1,0 +1,110 @@
+#! /usr/local/bin/vvp
+:ivl_version "11.0 (devel)" "(s20150603-387-gad1101c)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "vhdl_textio";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0xe43050 .scope module, "behavioral_AND8_tb" "behavioral_AND8_tb" 2 1;
+ .timescale 0 0;
+v0xe73450_0 .var "io_a", 3 0;
+v0xe73530_0 .var "io_b", 3 0;
+v0xe73600_0 .var "io_opcode", 1 0;
+v0xe73700_0 .net "io_out", 3 0, L_0xe73b40;  1 drivers
+v0xe737d0_0 .var "reg_add_test", 7 0;
+v0xe73870_0 .net "reg_value", 7 0, L_0xe73a10;  1 drivers
+S_0xe42b30 .scope module, "ba8" "behavioral_AND8" 2 10, 3 1 0, S_0xe43050;
+ .timescale 0 0;
+    .port_info 0 /INPUT 4 "io_a"
+    .port_info 1 /INPUT 4 "io_b"
+    .port_info 2 /INPUT 2 "io_opcode"
+    .port_info 3 /INPUT 8 "reg_add_test"
+    .port_info 4 /OUTPUT 4 "io_out"
+    .port_info 5 /OUTPUT 8 "reg_value"
+L_0xe73b40 .functor BUFZ 4, L_0xe73cf0, C4<0000>, C4<0000>, C4<0000>;
+L_0xe74280 .functor AND 1, L_0xe74820, L_0xe746e0, C4<1>, C4<1>;
+L_0x7f13ac3930f0 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+L_0xe74820 .functor XOR 1, L_0xe74340, L_0x7f13ac3930f0, C4<0>, C4<0>;
+L_0xe74930 .functor AND 1, L_0xe74c20, L_0xe74a40, C4<1>, C4<1>;
+L_0x7f13ac393180 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+L_0xe74c20 .functor XOR 1, L_0xe74ce0, L_0x7f13ac393180, C4<0>, C4<0>;
+L_0xe74ce0 .functor OR 1, L_0xe74340, L_0xe746e0, C4<0>, C4<0>;
+L_0x7f13ac3931c8 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+L_0xe74e30 .functor XOR 1, L_0xe74f40, L_0x7f13ac3931c8, C4<0>, C4<0>;
+L_0xe74f40 .functor OR 1, L_0xe74ce0, L_0xe74a40, C4<0>, C4<0>;
+v0xe45ad0_0 .net "T0", 3 0, L_0xe73cf0;  1 drivers
+v0xe718d0_0 .net "T1", 3 0, L_0xe73e30;  1 drivers
+v0xe719b0_0 .net "T10", 0 0, L_0xe74930;  1 drivers
+v0xe71a80_0 .net "T11", 0 0, L_0xe74a40;  1 drivers
+v0xe71b40_0 .net "T12", 0 0, L_0xe74c20;  1 drivers
+v0xe71c50_0 .net "T13", 0 0, L_0xe74ce0;  1 drivers
+v0xe71d10_0 .net "T14", 0 0, L_0xe74e30;  1 drivers
+v0xe71dd0_0 .net "T15", 0 0, L_0xe74f40;  1 drivers
+v0xe71e90_0 .net "T2", 3 0, L_0xe73f70;  1 drivers
+v0xe72000_0 .net "T3", 3 0, L_0xe74060;  1 drivers
+v0xe720e0_0 .net "T4", 3 0, L_0xe74150;  1 drivers
+v0xe721c0_0 .net "T5", 0 0, L_0xe74340;  1 drivers
+v0xe72280_0 .net "T6", 3 0, L_0xe744d0;  1 drivers
+v0xe72360_0 .net "T7", 0 0, L_0xe74280;  1 drivers
+v0xe72420_0 .net "T8", 0 0, L_0xe746e0;  1 drivers
+v0xe724e0_0 .net "T9", 0 0, L_0xe74820;  1 drivers
+L_0x7f13ac393018 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0xe725a0_0 .net/2u *"_s12", 3 0, L_0x7f13ac393018;  1 drivers
+L_0x7f13ac393060 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0xe72750_0 .net/2u *"_s18", 1 0, L_0x7f13ac393060;  1 drivers
+L_0x7f13ac3930a8 .functor BUFT 1, C4<01>, C4<0>, C4<0>, C4<0>;
+v0xe727f0_0 .net/2u *"_s26", 1 0, L_0x7f13ac3930a8;  1 drivers
+v0xe728d0_0 .net/2u *"_s30", 0 0, L_0x7f13ac3930f0;  1 drivers
+L_0x7f13ac393138 .functor BUFT 1, C4<10>, C4<0>, C4<0>, C4<0>;
+v0xe729b0_0 .net/2u *"_s36", 1 0, L_0x7f13ac393138;  1 drivers
+v0xe72a90_0 .net/2u *"_s40", 0 0, L_0x7f13ac393180;  1 drivers
+v0xe72b70_0 .net/2u *"_s46", 0 0, L_0x7f13ac3931c8;  1 drivers
+v0xe72c50_0 .var "data_reg", 7 0;
+v0xe72d30_0 .net "io_a", 3 0, v0xe73450_0;  1 drivers
+v0xe72e10_0 .net "io_b", 3 0, v0xe73530_0;  1 drivers
+v0xe72ef0_0 .net "io_opcode", 1 0, v0xe73600_0;  1 drivers
+v0xe72fd0_0 .net "io_out", 3 0, L_0xe73b40;  alias, 1 drivers
+v0xe730b0_0 .net "out_net", 7 0, v0xe72c50_0;  1 drivers
+v0xe73190_0 .net "reg_add_test", 7 0, v0xe737d0_0;  1 drivers
+v0xe73270_0 .net "reg_value", 7 0, L_0xe73a10;  alias, 1 drivers
+L_0xe73a10 .arith/sum 8, v0xe72c50_0, v0xe737d0_0;
+L_0xe73cf0 .functor MUXZ 4, L_0xe73e30, v0xe73530_0, L_0xe74e30, C4<>;
+L_0xe73e30 .functor MUXZ 4, L_0xe73f70, v0xe73450_0, L_0xe74930, C4<>;
+L_0xe73f70 .functor MUXZ 4, L_0xe74060, L_0xe744d0, L_0xe74280, C4<>;
+L_0xe74060 .functor MUXZ 4, L_0x7f13ac393018, L_0xe74150, L_0xe74340, C4<>;
+L_0xe74150 .arith/sum 4, v0xe73450_0, v0xe73530_0;
+L_0xe74340 .cmp/eq 2, v0xe73600_0, L_0x7f13ac393060;
+L_0xe744d0 .arith/sub 4, v0xe73450_0, v0xe73530_0;
+L_0xe746e0 .cmp/eq 2, v0xe73600_0, L_0x7f13ac3930a8;
+L_0xe74a40 .cmp/eq 2, v0xe73600_0, L_0x7f13ac393138;
+    .scope S_0xe42b30;
+T_0 ;
+    %pushi/vec4 171, 0, 8;
+    %store/vec4 v0xe72c50_0, 0, 8;
+    %end;
+    .thread T_0;
+    .scope S_0xe43050;
+T_1 ;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0xe73450_0, 0, 4;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v0xe73530_0, 0, 4;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0xe73600_0, 0, 2;
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v0xe737d0_0, 0, 8;
+    %end;
+    .thread T_1;
+    .scope S_0xe43050;
+T_2 ;
+    %vpi_call 2 27 "$monitor", "io_a = %d, io_b = %d, io_opcode = %d, io_out = %d, reg_value = %d", v0xe73450_0, v0xe73530_0, v0xe73600_0, v0xe73700_0, v0xe73870_0 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "behavioral_AND_verif.v";
+    "../src/behavioral_AND8.v";

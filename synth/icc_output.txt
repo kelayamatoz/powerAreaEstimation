@@ -1,0 +1,12 @@
+icc_shell> set SYN /cad/synopsys/dc_shell/latest/libraries/syn/
+/cad/synopsys/dc_shell/latest/libraries/syn/
+icc_shell> set TSMC_45 /cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+/cad/synopsys_EDK2/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn45gsbwp_110a/
+icc_shell> set link_library { * tcbn45gsbwpml.db dw_foundation.sldb}
+ * tcbn45gsbwpml.db dw_foundation.sldb
+icc_shell> set target_library "tcbn45gsbwpml.db"
+tcbn45gsbwpml.db
+icc_shell> quit
+
+Thank you...
+

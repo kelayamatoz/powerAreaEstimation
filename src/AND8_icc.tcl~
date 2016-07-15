@@ -1,0 +1,40 @@
+# set SYN /cad/synopsys/dc_shell/latest/libraries/syn/
+set TSMC_45 /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/frame_only_HVH_0d5_0/tcbn45gsbwp/LM/
+set link_library { * tcbn45gsbwpml.db} 
+# set link_library { * tcbn45gsbwpml.db dw_foundation.sldb}
+set target_library "tcbn45gsbwpml.db"
+
+set synthetic_library [list  dw_foundation.sldb]
+# set dw_lib     $SYN
+set sym_lib    $TSMC_45
+set target_lib $TSMC_45
+
+# set search_path [list ./ ../src/ $dw_lib $target_lib $sym_lib]
+
+set search_path [list ./ ../src/ $target_lib $sym_lib]
+set hdlin_auto_save_templates true
+
+# read_verilog -rtl [list behavioral_AND8.v]
+set_tlu_plus_files -max_tluplus /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/techfiles/tluplus/cln45gs_1p06m+alrdl_rcbest_top1.tluplus\
+ -min_tluplus /cad/synopsys_EDK2/TSMCHOME/digital/Back_End/milkyway/tcbn45gsbwp_110a/techfiles/tluplus/cln45gs_1p06m+alrdl_rcworst_top1.tluplus
+
+
+open_mw_lib alu_rtl_LIB
+
+import_designs behavioral_AND8.v -format "verilog" -top "behavioral_AND8" -cel "behavioral_AND8" 
+
+read_sdc 
+
+derive_pg_connection
+
+# create_floorplan
+create_floorplan \
+        -control_type aspect_ratio \
+        -core_aspect_ratio 1 \
+        -core_utilization 0.7 \
+        -left_io2core 30 \
+        -bottom_io2core 30 \
+        -right_io2core 30 \
+        -top_io2core 30 \
+        -start_first_row  
+exit
